@@ -1183,3 +1183,77 @@ footer { background: #103b59; color: white; padding: 28px 0; }
     width: 100%;
   }
 }
+
+/* Adetade Hospital mobile navigation */
+.mobile-menu-toggle {
+  display: none;
+  border: 1px solid #dce6ed;
+  background: white;
+  color: var(--dark-blue);
+  border-radius: 6px;
+  padding: 9px 13px;
+  font-size: 23px;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 0;
+  }
+
+  .header .brand {
+    max-width: calc(100% - 55px);
+  }
+
+  .header .brand img {
+    width: 45px;
+    height: 45px;
+  }
+
+  .mobile-menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .header nav {
+    display: none;
+    order: 4;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: #f5f9fc;
+    border-radius: 8px;
+    padding: 8px 15px;
+  }
+
+  .header nav.mobile-nav-open {
+    display: flex;
+  }
+
+  .header nav a {
+    display: block;
+    padding: 13px 5px;
+    font-size: 14px;
+    border-bottom: 1px solid #e1eaf0;
+  }
+
+  .header nav a:last-child {
+    border-bottom: none;
+  }
+
+  .header .header-appointment {
+    display: flex;
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    padding: 13px;
+    font-size: 14px;
+  }
+}

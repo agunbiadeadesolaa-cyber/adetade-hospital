@@ -1,4 +1,6 @@
-import type { ReactNode } from "react";
+"use client";
+
+import { useState, type ReactNode } from "react";
 
 type SitePageProps = {
   title: string;
@@ -23,6 +25,8 @@ export default function SitePage({
   activePath,
   children,
 }: SitePageProps) {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <>
       <div className="topbar">
@@ -37,29 +41,47 @@ export default function SitePage({
       </div>
 
       <header className="header container">
-        <a href="/" className="brand">
-          <img src="/images/adetade-logo.svg" alt="Adetade Hospital logo" />
-          <span>
-            <strong>ADETADE HOSPITAL</strong>
-            <small>ADO-EKITI, NIGERIA</small>
-          </span>
-        </a>
+  <a href="/" className="brand">
+    <img src="/images/adetade-logo.svg" alt="Adetade Hospital logo" />
+    <span>
+      <strong>ADETADE HOSPITAL</strong>
+      <small>ADO-EKITI, NIGERIA</small>
+    </span>
+  </a>
 
-        <nav aria-label="Main navigation">
-          {navigation.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className={activePath === item.href ? "active" : ""}
-              aria-current={activePath === item.href ? "page" : undefined}
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
+  <button
+    className="mobile-menu-toggle"
+    type="button"
+    aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+    aria-expanded={menuOpen}
+    aria-controls="main-navigation"
+    onClick={() => setMenuOpen(!menuOpen)}
+  >
+    {menuOpen ? "✕" : "☰"}
+  </button>
 
-        <a className="button" href="/contact#appointment-form">Get Appointment</a>
-      </header>
+  <nav
+    id="main-navigation"
+    className={menuOpen ? "mobile-nav-open" : ""}
+    aria-label="Main navigation"
+  >
+    {navigation.map((item) => (
+      <a
+        key={item.href}
+        href={item.href}
+        className={activePath === item.href ? "active" : ""}
+        aria-current={activePath === item.href ? "page" : undefined}
+        onClick={() => setMenuOpen(false)}
+      >
+        {item.label}
+      </a>
+    ))}
+  </nav>
+
+  <a className="button header-appointment" href="/contact#appointment-form">
+    Get Appointment
+  </a>
+</header>
 
       <main className="inner-page">
         <section className={`page-banner ${imageClass}`}>
